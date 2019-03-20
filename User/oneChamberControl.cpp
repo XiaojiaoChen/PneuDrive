@@ -1,6 +1,8 @@
 /*For more examples, please go to the ./example folder*/
+//step0: configure your hardware component in UserConfig.h
 
 //step1
+#include "UserConfig.h"
 #include <PneuDrive.h>
 
 
@@ -35,33 +37,32 @@ void setup()
 }
 void loop(){
 	if (loop_gogogo) {
-		flowrate=getFlowrate();
+	//	flowrate=getFlowrate();
 			pneudrive.readPressure(0);
  			pneudrive.writePressureCommand(0);
  			if(flagReceive)
- 				{
- 					flagReceive=0;
-					endTime=micros();
- 				}
- 			else
- 			{
- 				ReceiveTime=0;
- 				endTime=0;
- 			}
+				endTime=micros();
+
+
 		}
 }
 void serialDisplay() {
 
-	printf("%d	%ld %ld %ld %d %1.3f %d %3.2f %d\r\n",
+	printf("%d	%d %d %d %1.3f %d %3.2f %d\r\n",
 			millis(),
 			(int)(pneudrive.pressureCommands[0]),
 			ReceiveTime,
 			endTime,
-			c1,
 			pneudrive.chambers[0]->readOpening(),
 			(int)(pneudrive.readPressure(0)),
 			flowrate,
 			frequencyy);
+	if(flagReceive)
+	{
+		ReceiveTime=0;
+		endTime=0;
+		flagReceive=0;
+	}
 }
 void serialReceiveCallback(char *pSerialCommandBuffer) {
 	char commandChar;

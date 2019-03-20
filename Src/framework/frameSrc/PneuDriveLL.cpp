@@ -186,7 +186,8 @@ uint32_t millis()
 
 uint32_t micros()
 {
-	return (uint32_t)(millis()*1000 + htim5.Instance->CNT);
+	uint32_t t=(millis()*1000) + htim5.Instance->CNT;
+	return t;
 }
 
 void delay_us(int32_t t)  //1MHz 1us
