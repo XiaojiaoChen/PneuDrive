@@ -14,6 +14,12 @@
 #endif
 #include "main.h"
 
+/*****************************How to use PneuDrive***********************
+ * 1. modify the MACROs  according to your hardware configuration
+ * 2. implement the interface functions.
+ * 3. useful ow-level APIs are provided.
+ */
+
 /***************************Configure control and display frequency********************/
 #define CONTROL_FREQUENCY 1000	//The loop() frequency in Hz
 #define DISPLAY_FREQUENCY 100	//The serialDisplay() frequency in Hz
