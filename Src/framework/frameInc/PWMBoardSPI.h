@@ -10,13 +10,14 @@
 
 #ifndef FRAMEWORK_FRAMEINC_PWMBOARDSPI_H_
 #define FRAMEWORK_FRAMEINC_PWMBOARDSPI_H_
+
 #ifdef __cplusplus
  extern "C" {
 #endif
 
 
 #include <stm32f7xx_hal.h>
-#include "UserConfig.h"
+#include <HardwareConfig.h>
 #include <stdio.h>
 
 #if PWMBOARDSPI_NUM>0

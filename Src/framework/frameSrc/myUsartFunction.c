@@ -59,7 +59,7 @@ static PRINTFBINSTRUCT printfBinStruct;
 
 void usart1CommandHandler()
 {
-	wirelessCommandCallback((char *)Usart1Device.RxBuf);
+	serialPort1Callback((char *)Usart1Device.RxBuf);
 
 }
 void usart3CommandHandler()
@@ -83,7 +83,7 @@ void usart3CommandHandler()
 		//if end of line
 		if (Usart3Device.RxLineBuf[Usart3Device.countRxLineBuf-1]=='\n')
 		{
-			serialCommandCallback((char *)Usart3Device.RxLineBuf);
+			serialReceiveCallback((char *)Usart3Device.RxLineBuf);
 			memset(Usart3Device.RxLineBuf,0,len);
 			Usart3Device.pRxLineBuf=Usart3Device.RxLineBuf;
 			Usart3Device.countRxLineBuf=0;
@@ -196,7 +196,7 @@ int _write(int file, char *pSrc, int len)
 	//Try to send just buffered string if this is the only one
 	if(Usart3Device.bufferedTxNum == 1){
 		HAL_UART_Transmit_DMA(Usart3Device.huart,pDes,Usart3Device.countTxBuf[Usart3Device.producerTxBufNum]);
-		Usart3Device.TxStart = TIC();
+		Usart3Device.TxStart = micros();
 	}
 	else{
 	//TO DO, There is a bug here, when the builtInPWMFrequency is changed, the Usart3Devices would somehow suddenly lost the configurations
@@ -241,7 +241,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 {
 	 /*update information*/
-	 Usart3Device.TxEnd = TIC();
+	 Usart3Device.TxEnd = micros();
 	 Usart3Device.lastTxTime = Usart3Device.TxEnd - Usart3Device.TxStart;
 	 Usart3Device.lastTxCount = Usart3Device.countTxBuf[Usart3Device.consumerTxBufNum];
 
@@ -254,7 +254,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 
 	/*If it is still positive, go on consume next*/
 	if(Usart3Device.bufferedTxNum>0){
-		Usart3Device.TxStart = TIC();
+		Usart3Device.TxStart = micros();
 		uint8_t *px = &Usart3Device.TxBuf[Usart3Device.consumerTxBufNum][0];
 		HAL_UART_Transmit_DMA(Usart3Device.huart,px,Usart3Device.countTxBuf[Usart3Device.consumerTxBufNum]);
 	}

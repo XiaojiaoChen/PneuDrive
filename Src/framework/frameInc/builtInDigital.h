@@ -10,11 +10,12 @@
 
 #ifndef FRAMEWORK_FRAMEINC_BUILTINDIGITAL_H_
 #define FRAMEWORK_FRAMEINC_BUILTINDIGITAL_H_
+
 #ifdef __cplusplus
  extern "C" {
 #endif
 
-#include "UserConfig.h"
+#include <HardwareConfig.h>
 
  void DigitalBuiltIn_Write(uint16_t num, uint16_t state);
  void DigitalBuiltIn_Toggle(uint16_t num);

@@ -4,7 +4,7 @@
   from http://www.adafruit.com/products/815
  ****************************************************/
 
-#include "Userconfig.h"
+#include <HardwareConfig.h>
 #if (PWMBOARDI2C_NUM>0)
 #include <PWMBoardI2C.h>
 #include <stdlib.h>

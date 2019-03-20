@@ -16,6 +16,7 @@
 #include "PWMBoardSPI.h"
 #include "PWMBoardI2C.h"
 #include "tim.h"
+extern TIM_HandleTypeDef htim5;
 
 float AnalogRead(uint16_t num)
 {
@@ -104,29 +105,72 @@ void PWMWriteFrequency(uint16_t num, float fre)
 /***************************************************************************************************/
 /* NOTE : The following functions should not be modified, but to be implemented in the user file. */
 
+/**
+ * @brief  called once at the beginning.
+ * @note   This function is called only once at the beginning.
+ * You could put the initialization code here.
+ * @param  None
+ * @retval None
+ */
 __weak void setup() {
 	printf("Running default setup()\r\n");
 };
 
+/**
+ * @brief  called at a default frequency of 1000Hz.
+ * @note   This function is called after setup(), and would be continuously running  at a frequency of CONTROL_FREQUENCY.
+ * CONTROL_FREQUENCY is a user-defined MACRO, with a default value of 1000, and the maximum value is also 1000.
+ * You could put the control algorithms here.
+ * @param  None
+ * @retval None
+ */
 __weak void loop() {
 	printf("Running default loop()\r\n");
 }
 ;
+
+/**
+ * @brief  called at a default frequency of 100Hz.
+ * @note   This function is called after setup(), and would be continuously running  at a frequency of DISPLAY_FREQUENCY.
+ * DISPLAY_FREQUENCY is a user-defined MACRO, with a default value of 100, and the maximum value is 1000.
+ * You could transfer informations to PC from there by using function printf(). In the maximum transfer frequency of 1000Hz,
+ * the maximum sending bytes per cycle is 100 Bytes under the baudrate of 921600.
+ * This capacity could be doubled if the baudrate is changed to 2000000.
+ * @param  None
+ * @retval None
+ */
 __weak void serialDisplay() {
 	printf("Running default serialDisplay()\r\n");
 }
 ;
-__weak void serialCommandCallback(char *pSerialReceiveBuffer) {
+
+/**
+  * @brief  serialReceive Callback function
+  * @note   This function is called  when serialPort3 receives strings ended with '\r\n' from PC serial communication.
+  * Users could use scanf() to read the ASCII string, or use structure to decode the BIN information.
+  * @param  pSerialReceiveBuffer : Pointer to the received string ended with '\r\n'.
+  * @retval None
+  */
+__weak void serialReceiveCallback(char *pSerialReceiveBuffer) {
 	printf("Running default serialCommandCallback()\r\n");
 }
 ;
-__weak void wirelessCommandCallback(char *pWirelessReceiveBuffer) {
+
+/**
+  * @brief  hardware interrupt Callback function
+  * @note   This function is called  when uprising change occurs on the interrupt port
+  * @param  interrupt_Pin : the number of port where interrupt took place
+  * @retval None
+  */
+__weak void interruptCallback(int Button_Interrupt_Pin)
+{
+};
+
+__weak void serialPort1Callback(char *pWirelessReceiveBuffer) {
 	printf("Running default WirelessCommandCallbackFunction()\r\n");
 }
 ;
-__weak void clickButtonCallback(int Button_Interrupt_Pin)
-{
-};
+
 __weak void serialPort4Callback(char *pSerialPort4Buffer)
 {
 
@@ -136,39 +180,31 @@ __weak void serialPort4Callback(char *pSerialPort4Buffer)
 
 
 /*-------------------Delay Function needs modification--------------------------------*/
-#define DELAY_TIMER htim7
 
-void resetTIC()
+
+
+uint32_t millis()
 {
-	DELAY_TIMER.Instance->CNT=0;
-}
-int32_t TIC()
-{
-	 return (int32_t)DELAY_TIMER.Instance->CNT;
+	return HAL_GetTick();
 }
 
+uint32_t micros()
+{
+	return (uint32_t)(millis()*1000 + htim5.Instance->CNT);
+}
 
 void delay_us(int32_t t)  //1MHz 1us
 {
-	int32_t pre = DELAY_TIMER.Instance->CNT;
-	while((int32_t)((int32_t)(DELAY_TIMER.Instance->CNT))<pre+t-1);
+	uint32_t ts=micros();
+	while((int32_t)(micros()-ts)<t);
 }
 void delay_ns(int32_t t)  ////20MHz 50ns
 {
 
    for(int i=0;i<t/50;i++)
 	   {
-
-
 	   	   __ASM volatile ("NOP");
 	   }
 }
 
-uint32_t millis()
-{
-	return HAL_GetTick();
-}
-void init_builtInTime()
-{
-	HAL_TIM_Base_Start(&DELAY_TIMER);
-}
+

@@ -25,14 +25,14 @@ void PUMP::attach(int num)
 void PUMP::start()
 {
 
-	DigitalWrite(DigitalPort,PWM_DIGITAL_OUTPUT_REVERSE);
+	DigitalWrite(DigitalPort,PWM_DIGITAL_OUTPUT_REVERSED);
 	status=1;
 
 }
 
 void PUMP::stop()
 {
-	DigitalWrite(DigitalPort,1-PWM_DIGITAL_OUTPUT_REVERSE);
+	DigitalWrite(DigitalPort,1-PWM_DIGITAL_OUTPUT_REVERSED);
 	status=0;
 
 }

@@ -10,11 +10,12 @@
 
 #ifndef FRAMEWORK_FRAMEINC_BUILTINPWM_H_
 #define FRAMEWORK_FRAMEINC_BUILTINPWM_H_
+
 #ifdef __cplusplus
  extern "C" {
 #endif
 
-#include "UserConfig.h"
+#include <HardwareConfig.h>
 
 void PWMBuiltIn_writeDuty(uint16_t num, float fduty);
 void PWMBuiltIn_writeFrequency(uint16_t num, float fre);

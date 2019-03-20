@@ -1,12 +1,13 @@
 
 #ifndef __PWMBOARDI2C_H
 #define __PWMBOARDI2C_H
+
 #ifdef __cplusplus
  extern "C" {
 #endif
 
 
-#include "UserConfig.h"
+#include <HardwareConfig.h>
 #if (PWMBOARDI2C_NUM>0)
 
 #include <stm32f7xx_hal.h>

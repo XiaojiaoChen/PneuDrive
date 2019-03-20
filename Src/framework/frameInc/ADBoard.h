@@ -6,7 +6,7 @@
 #endif
 
 #include "stm32f7xx_hal.h"
-#include "UserConfig.h"
+#include <HardwareConfig.h>
 
 #if (ADBOARD_NUM>0)
 typedef struct AD7616_DEVICE_STRUCT {

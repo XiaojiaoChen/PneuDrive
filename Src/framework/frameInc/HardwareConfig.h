@@ -8,40 +8,11 @@
  * Orgnization: the University of Hong Kong
  */
 
-#ifndef FRAMEWORK_FRAMEINC_USERCONFIG_H_
-#define FRAMEWORK_FRAMEINC_USERCONFIG_H_
+#ifndef FRAMEWORK_FRAMEINC_HARDWARECONFIG_H_
+#define FRAMEWORK_FRAMEINC_HARDWARECONFIG_H_
 #ifdef __cplusplus
  extern "C" {
 #endif
-
-
-
-/******************Modify according to your hardware configuration******************/
-
-
-
-#define ADBOARD_NUM 	0		//The quantity of AD7616 Boards
-
-#define DABOARD_NUM 	0		//The quantity of LTC2668 Boards
-
-#define PWMBOARDSPI_NUM 0		//The quantity of LT8500 Boards
-
-#define PWMBOARDI2C_NUM 0		//The quantity of PCA9685 Boards
-
-#define CONTROL_FREQUENCY 1000	//The loop() frequency in Hz
-
-#define DISPLAY_FREQUENCY 100	//The serialDisplay() frequency in Hz
-
-#define PWM_DIGITAL_OUTPUT_REVERSE	0 //According to the power amplifier board
-
-/********************************End of modification****************************/
-
-
-
-
-
-
-
 
 /*********************************************************************************************************
 *******************Do not modify the following contents, unless you are aware what you are doing*********
@@ -102,7 +73,9 @@
 #include "stdlib.h"
 #include "stdio.h"
 
+
+
 #ifdef __cplusplus
 }
 #endif
-#endif /* FRAMEWORK_FRAMEINC_USERCONFIG_H_ */
+#endif /* FRAMEWORK_FRAMEINC_HARDWARECONFIG_H_ */

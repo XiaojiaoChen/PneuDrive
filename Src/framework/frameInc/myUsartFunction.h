@@ -55,10 +55,10 @@ typedef struct UART_DEVICE_STRUCT{
 	uint16_t Received;
 	RECEIVEBINSTRUCT *receveBinPtr;
 
-	int32_t TxStart;
-	int32_t TxEnd;
+	uint32_t TxStart;
+	uint32_t TxEnd;
 	UART_HandleTypeDef *huart;
-	int32_t lastTxTime;
+	uint32_t lastTxTime;
 	uint32_t lastTxCount;
 
 }UART_DEVICE;

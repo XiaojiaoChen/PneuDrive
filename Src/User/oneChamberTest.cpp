@@ -22,7 +22,7 @@ int frequencyy=40;
 uint32_t ReceiveTime=0;
 uint32_t endTime=0;
 //step3
-void setup(void)
+void setup()
 {
 
 	pneudrive.chambers[0]->attachPWM(0,1);
@@ -35,18 +35,15 @@ void setup(void)
 
 
 }
-void loop(void){
+void loop(){
 	if (loop_gogogo) {
 		flowrate=getFlowrate();
 			pneudrive.readPressure(0);
  			pneudrive.writePressureCommand(0);
  			if(flagReceive)
  				{
- 					c1=TIC();
  					flagReceive=0;
- 					endTime=millis();
-					uint32_t endTime2=(uint32_t)(htim5.Instance->CNT);
-					endTime=(endTime%10)*1000+endTime2;
+					endTime=micros();
  				}
  			else
  			{
@@ -68,7 +65,7 @@ void serialDisplay() {
 			flowrate,
 			frequencyy);
 }
-void serialCommandCallback(char *pSerialCommandBuffer) {
+void serialReceiveCallback(char *pSerialCommandBuffer) {
 	char commandChar;
 	int chambernum = 0;
 	float pCommand = 0;
@@ -80,11 +77,7 @@ void serialCommandCallback(char *pSerialCommandBuffer) {
 	if (commandChar == 'p') {
 		//Only change the value of command, leaving the control part to the loop().
 		flagReceive=1;
-		ReceiveTime=millis();
-		uint32_t ReceiveTime2=(uint32_t)(htim5.Instance->CNT);
-		ReceiveTime=(ReceiveTime%10)*1000+ReceiveTime2;
-		resetTIC();
-
+		ReceiveTime=micros();
 		pneudrive.bufferPressureCommand(chambernum, pCommand);
 
 	} else if (commandChar == 'g') {

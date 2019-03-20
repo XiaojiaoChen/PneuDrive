@@ -3,9 +3,9 @@
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
 
-Pneudrive is a realtime control platform for soft pneumatic robotics (SPRs).
+PneuDrive is a realtime control platform for soft pneumatic robotics (SPRs).
 
-It offers an easy way to access advanced embedded control features, like real-time control, high performance computation and real-time communication, for multiple-chambered SPR projects, ideal for quickly setting up pneuamtic projects with ease.
+It offers an easy way to access advanced embedded control features, like real-time control, high performance computation and real-time communication, for multiple-chambered SPR projects, ideal for quickly deploying pneuamtic projects with small effort.
 
 
 ### Features
@@ -41,10 +41,10 @@ control:
 
 Hardware:
  * STM32F767ZI-Nucleo board
- * I-NUCLEO-NETX
- * ADS8588 board
- * LTC2668 board
- * other sensors
+ * I-NUCLEO-NETX(optional)
+ * ADS8588 board(optional)
+ * LTC2668 board(optional)
+ * other sensors(optional)
  
 Software:
  * STM32CubeMX

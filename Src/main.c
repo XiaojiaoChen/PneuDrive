@@ -34,7 +34,6 @@
 /* USER CODE BEGIN Includes */
 #include "PneuFunctions.h"
 #include "myUsartFunction.h"
-#include "userMain.h"
 #include "ADBoard.h"
 #include "DABoard.h"
 #include "PWMBoardI2C.h"
@@ -135,9 +134,6 @@ int main(void)
   MX_I2C2_Init();
   MX_GFXSIMULATOR_Init();
   /* USER CODE BEGIN 2 */
-  /*******************************Timer for us***************************/
-  init_builtInTime();
-
 	/*******************************Usart1 and Usart3**************************/
 	my_UsartInit();
 
@@ -149,8 +145,6 @@ int main(void)
 #endif
 
 	/******************************  PWM  init***************************/
-
-
 #if (PWMBOARDSPI_NUM>0)
 	PWMBoardSPI_init();
 #endif
@@ -261,7 +255,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	ret = ADBoard_BUSYCallback(GPIO_Pin);
 #endif
 	if (ret)
-		clickButtonCallback(GPIO_Pin);
+		interruptCallback(GPIO_Pin);
 }
 /* USER CODE END 4 */
 

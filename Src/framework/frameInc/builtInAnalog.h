@@ -10,12 +10,13 @@
 
 #ifndef FRAMEWORK_FRAMEINC_BUILTINANALOG_H_
 #define FRAMEWORK_FRAMEINC_BUILTINANALOG_H_
+
 #ifdef __cplusplus
  extern "C" {
 #endif
 
 
-#include "UserConfig.h"
+#include <HardwareConfig.h>
 
 
  void AnaBuiltInStart();

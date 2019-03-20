@@ -42,7 +42,7 @@ void SOLENOID_VALVE::writeDuty(float dut)
 	dut = CONSTRAIN(dut,dutyMin,dutyMax);
 	if(fabsf(dut-duty)>1e-6)
 	{
-		duty = (PWM_DIGITAL_OUTPUT_REVERSE == 0)?dut:(1-dut);
+		duty = (PWM_DIGITAL_OUTPUT_REVERSED == 0)?dut:(1-dut);
 		PWMWriteDuty(PWMPort,duty);
 	}
 
