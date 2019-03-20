@@ -17,7 +17,7 @@
 
 
 #include <stm32f7xx_hal.h>
-#include <HardwareConfig.h>
+#include <builtInHWConfig.h>
 #include <stdio.h>
 
 #if PWMBOARDSPI_NUM>0

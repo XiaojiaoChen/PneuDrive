@@ -16,7 +16,7 @@
 #endif
 
 
-#include <HardwareConfig.h>
+#include <builtInHWConfig.h>
 
 
  void AnaBuiltInStart();

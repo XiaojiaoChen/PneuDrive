@@ -7,7 +7,7 @@
 #endif
 
 
-#include <HardwareConfig.h>
+#include <builtInHWConfig.h>
 #if (PWMBOARDI2C_NUM>0)
 
 #include <stm32f7xx_hal.h>

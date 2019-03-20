@@ -1,6 +1,6 @@
 #ifndef __DABOARDLTC2668_H
 #define __DABOARDLTC2668_H
-#include <HardwareConfig.h>
+#include <builtInHWConfig.h>
 #include "stm32f7xx_hal.h"
 
 #if (DABOARD_NUM>0)

@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
+#include <PneuDriveLL.h>
 #include "main.h"
 #include "cmsis_os.h"
 #include "adc.h"
@@ -32,7 +33,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "PneuFunctions.h"
 #include "myUsartFunction.h"
 #include "ADBoard.h"
 #include "DABoard.h"

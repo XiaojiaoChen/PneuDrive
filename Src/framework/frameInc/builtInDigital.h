@@ -15,7 +15,7 @@
  extern "C" {
 #endif
 
-#include <HardwareConfig.h>
+#include <builtInHWConfig.h>
 
  void DigitalBuiltIn_Write(uint16_t num, uint16_t state);
  void DigitalBuiltIn_Toggle(uint16_t num);

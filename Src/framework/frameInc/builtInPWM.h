@@ -15,7 +15,7 @@
  extern "C" {
 #endif
 
-#include <HardwareConfig.h>
+#include <builtInHWConfig.h>
 
 void PWMBuiltIn_writeDuty(uint16_t num, float fduty);
 void PWMBuiltIn_writeFrequency(uint16_t num, float fre);

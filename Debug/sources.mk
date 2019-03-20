@@ -39,9 +39,8 @@ Drivers/STM32F7xx_HAL_Driver/Src \
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS \
 Middlewares/Third_Party/FreeRTOS/Source \
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 \
-Src/User \
 Src \
-Src/framework/PneumaticElements \
 Src/framework/frameSrc \
+User \
 startup \
 
