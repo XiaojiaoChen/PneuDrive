@@ -19,7 +19,6 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
-#include <PneuDriveLL.h>
 #include "main.h"
 #include "cmsis_os.h"
 #include "adc.h"

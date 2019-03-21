@@ -24,6 +24,7 @@
 #include "cmsis_os.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "myUsartFunction.h"
 /* USER CODE END Includes */
   
 /* Private typedef -----------------------------------------------------------*/

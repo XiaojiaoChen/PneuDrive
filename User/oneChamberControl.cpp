@@ -30,7 +30,7 @@ void setup()
 	pneudrive.chambers[0]->attachPWM(0,1);
 	pneudrive.chambers[0]->writeOpening(0);
 
-	pneudrive.chambers[0]->attachSensor(BUILTIN_ANA_IN_NUM+32-1);
+	pneudrive.chambers[0]->attachSensor(0);
 	pneudrive.chambers[0]->setSensorRange_GaugePa(sensorVmin, sensorVmax, sensorPmin, sensorPmax);
 
 	pneudrive.writeFrequency(frequencyy);
