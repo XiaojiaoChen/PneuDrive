@@ -22,7 +22,6 @@ PNEUDRIVE::PNEUDRIVE(int chambernum)
 	}
 	pressureDeadZone = 2000;
     frequency = 10;
-    setupPlatform();
 }
 
 

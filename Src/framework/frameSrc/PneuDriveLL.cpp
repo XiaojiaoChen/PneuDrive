@@ -50,6 +50,7 @@ void DigitalToggle(uint16_t num)
 
 void PWMWriteDuty(uint16_t num, float fduty)
 {
+	uint16_t numori=num;
 	if(0<=num && num<BUILTIN_PWM_NUM){
 		PWMBuiltIn_writeDuty(num,fduty);
 	}
@@ -73,6 +74,7 @@ void PWMWriteDuty(uint16_t num, float fduty)
 
 void PWMWriteFrequency(uint16_t num, float fre)
 {
+	uint16_t numori=num;
 	if(num<BUILTIN_PWM_NUM){
 			PWMBuiltIn_writeFrequency(num,fre);
 	}

@@ -3,6 +3,7 @@
 
 
 /*
+#include "UserConfig.h"									//configure your hardware according to your project setup
 #include "PneuDrive.h"									//always include this file
 
 void setup()											//called once at the beginning

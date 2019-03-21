@@ -18,7 +18,8 @@ const float SOLENOID_VALVE::frequencyMax = 2000;
 
 SOLENOID_VALVE::SOLENOID_VALVE(int num){
 
-	duty=0;
+	_duty=0;
+	duty=(PWM_DIGITAL_OUTPUT_REVERSED == 0)?_duty:(1-_duty);
 	frequency = 10;
 	dutyMin = 0;
 	dutyMax = 1;
@@ -42,8 +43,9 @@ void SOLENOID_VALVE::writeDuty(float dut)
 	dut = CONSTRAIN(dut,dutyMin,dutyMax);
 	if(fabsf(dut-duty)>1e-6)
 	{
-		duty = (PWM_DIGITAL_OUTPUT_REVERSED == 0)?dut:(1-dut);
-		PWMWriteDuty(PWMPort,duty);
+		 duty = dut;
+		_duty= (PWM_DIGITAL_OUTPUT_REVERSED == 0)?duty:(1-duty);
+		PWMWriteDuty(PWMPort,_duty);
 	}
 
 }

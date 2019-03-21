@@ -29,6 +29,7 @@ public:
 private:
 	int PWMPort;
 	float duty;
+	float _duty;
 	float frequency;
 	float dutyMin;
 	float dutyMax;

@@ -24,6 +24,8 @@ uint32_t endTime=0;
 //step3
 void setup()
 {
+	pneudrive.pSource.stop();
+	pneudrive.pSink.stop();
 
 	pneudrive.chambers[0]->attachPWM(0,1);
 	pneudrive.chambers[0]->writeOpening(0);
@@ -37,24 +39,22 @@ void setup()
 }
 void loop(){
 	if (loop_gogogo) {
-	//	flowrate=getFlowrate();
-			pneudrive.readPressure(0);
- 			pneudrive.writePressureCommand(0);
- 			if(flagReceive)
-				endTime=micros();
-
-
-		}
+		pneudrive.writePressureCommand(0);
+		if(flagReceive)
+			endTime=micros();
+		//flowrate=getFlowrate();
+	}
 }
 void serialDisplay() {
 
-	printf("%d	%d %d %d %1.3f %d %3.2f %d\r\n",
+	printf("%d	%d %d %1.3f %d %d %d %3.2f %d\r\n",
 			millis(),
-			(int)(pneudrive.pressureCommands[0]),
 			ReceiveTime,
 			endTime,
 			pneudrive.chambers[0]->readOpening(),
+			(int)(pneudrive.pressureCommands[0]),
 			(int)(pneudrive.readPressure(0)),
+			(int)(pneudrive.chambers[0]->pressureFil),
 			flowrate,
 			frequencyy);
 	if(flagReceive)

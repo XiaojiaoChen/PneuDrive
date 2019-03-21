@@ -18,7 +18,7 @@ const float CHAMBER::pressureMin= 0;
 const float CHAMBER::pressureMax=201325;
 
 static float valveOpeningLimArray[30][4]={
-		{-0.5,-0.06,0.06,0.5},//0
+		{-1,0,0,1},//0
 		{-0.235,-0.18,0.1,0.12},//1
 		{-0.45,-0.29,0.1,0.12},//2
 		{-0.425,-0.292,0.118,0.132},//3
