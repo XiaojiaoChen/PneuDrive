@@ -49,15 +49,15 @@ float PNEUDRIVE::readPressure(int num)
 
 void PNEUDRIVE::writePressure(int num,float preCommand)
 {
-	bufferPressureCommand(num,preCommand);
-	writePressureCommand(num);
+	bufferPressure(num,preCommand);
+	writeBufferedPressure(num);
 }
 
-void PNEUDRIVE::bufferPressureCommand(int num,float preCommand)
+void PNEUDRIVE::bufferPressure(int num,float preCommand)
 {
 	pressureCommands[num]=preCommand;
 }
-void PNEUDRIVE::writePressureCommand(int num)
+void PNEUDRIVE::writeBufferedPressure(int num)
 {
 	chambers[num]->writePressure(pressureCommands[num]);
 }

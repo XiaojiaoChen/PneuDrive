@@ -338,5 +338,6 @@
 "Src/framework/frameSrc/trajectoryGeneration.o"
 "Src/framework/frameSrc/valveFlowFunc.o"
 "User/Template.o"
+"User/myinterface.o"
 "User/oneChamberControl.o"
 "startup/startup_stm32f767xx.o"

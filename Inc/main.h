@@ -58,8 +58,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define DO_0_Pin GPIO_PIN_3
-#define DO_0_GPIO_Port GPIOE
+#define DO_6_Pin GPIO_PIN_3
+#define DO_6_GPIO_Port GPIOE
 #define DO_1_Pin GPIO_PIN_4
 #define DO_1_GPIO_Port GPIOE
 #define PWM_18_Pin GPIO_PIN_5
@@ -70,8 +70,8 @@ void Error_Handler(void);
 #define DO_2_GPIO_Port GPIOC
 #define DO_5_Pin GPIO_PIN_2
 #define DO_5_GPIO_Port GPIOF
-#define DO_6_Pin GPIO_PIN_3
-#define DO_6_GPIO_Port GPIOF
+#define DO_0_Pin GPIO_PIN_3
+#define DO_0_GPIO_Port GPIOF
 #define DO_7_Pin GPIO_PIN_4
 #define DO_7_GPIO_Port GPIOF
 #define DO_8_Pin GPIO_PIN_5

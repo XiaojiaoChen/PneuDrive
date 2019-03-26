@@ -14,6 +14,11 @@
 
 PRESSURE_SOURCE::PRESSURE_SOURCE(int DigitalPort, int AnalogPort) {
 	attach(DigitalPort,AnalogPort);
+	sourceType = 0;
+	direction=0;
+	pressure=0;
+	pressureLower=0;
+	pressureUpper=0;
 }
 
 

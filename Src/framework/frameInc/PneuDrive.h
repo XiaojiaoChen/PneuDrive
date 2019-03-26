@@ -41,8 +41,8 @@ public:
 	float readPressure(int num);
 	void writePressure(int num,float presCommand);
 
-	void bufferPressureCommand(int num,float preCommand);
-	void writePressureCommand(int num);
+	void bufferPressure(int num,float preCommand);
+	void writeBufferedPressure(int num);
 
 	float *pressureCommands;
 
