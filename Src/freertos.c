@@ -176,8 +176,7 @@ void controlTaskFunc(void const * argument)
 		loop();
 
 #if (PWMBOARDSPI_NUM>0)
-		PWMBoardSPI_updateDutyAll();
-		PWMBoardSPI_updateCorrectionAll();
+		PWMBoardSPI_flushDutyAll();
 #endif
 		vTaskDelayUntil(&xLastWakeTime,controlTaskPeriod);
 

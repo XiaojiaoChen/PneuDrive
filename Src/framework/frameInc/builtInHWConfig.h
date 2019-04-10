@@ -18,7 +18,7 @@
 /*********************************************************************************************************
 *******************Do not modify the following contents, unless you are aware what you are doing*********
  ********************************************************************************************************/
-#define ETHERCAT_ENABLED 0		//Enable EtherCAT at SPI1 at the sacrifice of the last 4 PWMports.
+#define ETHERCAT_ENABLED 0		//Enable EtherCAT at SPI1 at the sacrifice of some AD ports and PWM ports
 #define AD7616_CHANNELNUM 	16
 #define LT8500_CHANNELNUM  	48
 #define LTC2668_CHANNELNUM 	16
@@ -36,11 +36,7 @@
 #define BUILTIN_ANA_IN_NUM 		16
 #define BUILTIN_DIT_OUT_NUM 	20
 #define BUILTIN_DIT_IN_NUM 		4
-#if PWMBOARDSPI_NUM>0 || ETHERCAT_ENABLED !=0
-#define BUILTIN_PWM_NUM 		8
-#else
 #define BUILTIN_PWM_NUM 		26
-#endif
 #define BUILTIN_EXTI_NUM 		8
 
 #define ALL_ANA_IN_NUM 		(BUILTIN_ANA_IN_NUM+EXTERNAL_ANA_IN_NUM)

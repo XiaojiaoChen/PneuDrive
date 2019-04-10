@@ -16,7 +16,7 @@ extern "C" {
 #define BELLOWNUM 6
 
 
-#include "PneumaticPlatform.h"
+#include "PneuDrive.h"
 
 #include "joyStick.h"
 
@@ -85,7 +85,7 @@ public:
 	float pressureBase;
 	float openingBase;
 
-	PNEUMATIC_PLATFORM *basePlatform;
+	PNEUDRIVE *basePlatform;
 	CHAMBER *bellows[BELLOWNUM];
 	float psource_lowerlimit;
 	float psource_upperlimit;

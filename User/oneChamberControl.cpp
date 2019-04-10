@@ -36,7 +36,7 @@ void setup()
 	//attach to PWM port 0 for inlet valve and PWM port 1 for outlet valve.
 	ptPneudrive->chambers[0]->attachPWM(0,1);
 	//attach to analogIn port 0 for pressure sensor
-	ptPneudrive->chambers[0]->attachSensor(4);
+	ptPneudrive->chambers[0]->attachSensor(0);
 
 	//write opening of the chamber to be 0. opening could be [-1,1], where [-1,0] represents the delfating duty and [0,1] represents inflating duty.
 	ptPneudrive->chambers[0]->writeOpening(0);
@@ -50,21 +50,20 @@ void setup()
 	//PSource is optional if you have other pressurized source.
 	//attach inlet pump to digital out port 0, analogIn port 1.
 	ptPneudrive->pSource.attachPump(0);
-	ptPneudrive->pSource.attachSensor(5);
+	ptPneudrive->pSource.attachSensor(1);
 	ptPneudrive->pSource.pressureSensor.setSensorRange_GaugePa(sensorVmin, sensorVmax, sensorPmin, sensorPmax);
 	ptPneudrive->pSource.stop();
 
 	//PSink is optional if atmosphere is OK
 	//attach vacuum pump to digital out port 1, analogIn port 2.
 	ptPneudrive->pSink.attachPump(1);
-	ptPneudrive->pSink.attachSensor(6);
+	ptPneudrive->pSink.attachSensor(2);
 	ptPneudrive->pSink.pressureSensor.setSensorRange_GaugePa(sensorVmin, sensorVmax, sensorPmin, sensorPmax);
 	ptPneudrive->pSink.stop();
 
 }
 void loop(){
 	if (loop_gogogo) {
-
 		//maintain the upstream to be within [110KPa, 130KPa], and downstream pressure to be within[-40KPa, -30KPa].
 		ptPneudrive->pSource.maintainPressure(pSourceLimit,pSourceLimit+20000);
 		ptPneudrive->pSink.maintainPressure(pSinkLimit-10000,pSinkLimit);
@@ -75,41 +74,21 @@ void loop(){
 			ptPneudrive->bufferPressure(0, pSin);
 		}
 
-		//control the pressure of chamber 0, the pressure command has  already been buffered either from serial port or from above generated sin curve.
+		//control the pressure of chamber 0 with built-in controller, the pressure command has  already been buffered either from serial port or from above generated sin curve.
 		ptPneudrive->writeBufferedPressure(0);
 	}
 }
 void serialDisplay() {
 
-	printf("Time:%4.3f psource:%3d psink:%3d Pd:%3d P:%3d valveopening: %1.4f\r\n",
+	printf("T: %4.3f source: %3d sink: %3d Pd: %3d P: %3d valve: %1.4f\r\n",
 				millis() / 1000.0,
 				(int)(ptPneudrive->pSource.pressure/1000),
 				(int)(ptPneudrive->pSink.pressure/1000),
 				(int)(ptPneudrive->pressureCommands[0]/1000),
 				(int)(ptPneudrive->readPressure(0)/1000),
 				ptPneudrive->chambers[0]->readOpening());
-
-//	  float vol[16];
-//		for(int i=0;i<16;i++)
-//			vol[i]=AnalogRead(i);
-//		printf("%1.3f %1.3f %1.3f %1.3f %1.3f %1.3f %1.3f %1.3f %1.3f %1.3f %1.3f %1.3f %1.3f %1.3f %1.3f %1.3f\r\n",
-//				vol[0],
-//				vol[1],
-//				vol[2],
-//				vol[3],
-//				vol[4],
-//				vol[5],
-//				vol[6],
-//				vol[7],
-//				vol[8],
-//				vol[9],
-//				vol[10],
-//				vol[11],
-//				vol[12],
-//				vol[13],
-//				vol[14],
-//				vol[15]);
 }
+
 void serialReceiveCallback(char *pSerialCommandBuffer) {
 	char commandChar[20]={0};
 	int chambernum = 0;
@@ -117,6 +96,20 @@ void serialReceiveCallback(char *pSerialCommandBuffer) {
 
 	//Read the received buffer with customized message. The first char means command type. The second number represents the interested chamber number. The third float number is the pressure command.
 	sscanf(pSerialCommandBuffer, "%s %d %f", &(commandChar[0]), &chambernum, &pCommand);
+
+	/*Commands explanation
+	 * g			: start control loop
+	 * s			: stop control loop
+	 *
+	 * a 0 40000 	: change the amplitude of the sinoid pressure command of chamber 0 to 40000Pa
+	 * f 0 0.5		:change the frequency of the sinoid pressure command of chamber 0 to 0.5Hz
+	 * o 0 40000 	: change the offset of the sinoid pressure command of chamber 0 to 40000Pa
+	 *
+	 * F 0 80 		: change the valve PWM frequency of chmaber 0 to be 80Hz.
+	 * p -2 130000	: change the pressure source to be 130000~150000Pa
+	 * p -1 -30000	: change the pressure sink to be -40000~-30000Pa
+	 * p 0 100000	: change the pressure command to be constant 100000Pa. This would overwrite the built-in sinoid pressure command
+	 */
 
 	//customized message
 	if (commandChar[0] == 'p') {

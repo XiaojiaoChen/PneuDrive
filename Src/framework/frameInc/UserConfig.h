@@ -11,7 +11,7 @@
 
 /***************************Configure control and display frequency********************/
 #define CONTROL_FREQUENCY 1000	//The loop() frequency in Hz
-#define DISPLAY_FREQUENCY 100	//The serialDisplay() frequency in Hz
+#define DISPLAY_FREQUENCY 1000	//The serialDisplay() frequency in Hz
 
 /***************************Configure hardware extention********************/
 #define ADBOARD_NUM 	0		//The quantity of AD7616 extension boards

@@ -8,7 +8,7 @@
  * Orgnization: the University of Hong Kong
  */
 
-#include <PneumaticPlatform.h> // always include this header in your own code.
+#include <PneuDrive.h> // always include this header in your own code.
 #include "SoftArm.h"
 
 
@@ -31,12 +31,12 @@ void serialDisplay()
 	softArm.display();
 }
 
-void serialCommandCallback(char *pSerialReceiveBuffer)
+void serialReceiveCallback(char *pSerialReceiveBuffer)
 {
 	softArm.receiveCommand(pSerialReceiveBuffer);
 }
 
-void wirelessCommandCallback(char *pWirelessReceiveBuffer)
+void serialPort1Callback(char *pWirelessReceiveBuffer)
 {
 	softArm.receiveCommand(pWirelessReceiveBuffer);
 }

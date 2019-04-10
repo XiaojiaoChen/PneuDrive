@@ -145,6 +145,8 @@ int main(void)
 #endif
 
 	/******************************  PWM  init***************************/
+	PWMBuiltIn_init();
+
 #if (PWMBOARDSPI_NUM>0)
 	PWMBoardSPI_init();
 #endif
@@ -153,7 +155,6 @@ int main(void)
 	PWMBoardI2C_init();
 #endif
 
-	PWMBuiltIn_init();
 	/******************************* setup() function**************************/
 	setup();
   /* USER CODE END 2 */
