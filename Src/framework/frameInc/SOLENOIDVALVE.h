@@ -33,8 +33,6 @@ private:
 	float frequency;
 	float dutyMin;
 	float dutyMax;
-	static const float frequencyMin;
-	static const float frequencyMax;
 };
 
 #ifdef __cplusplus

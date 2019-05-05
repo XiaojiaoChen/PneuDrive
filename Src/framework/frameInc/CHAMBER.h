@@ -18,6 +18,7 @@ extern "C" {
 
 
 #include <PRESSURESENSOR.h>
+#include <pressureSensorSPI.h>
 #include <SOLENOIDVALVE.h>
 #include "Controller.h"
 
@@ -44,6 +45,7 @@ public:
 	BASIC_PRESSURE_CONTROLLER *pressureController;
 	SOLENOID_VALVE valves[2];
 	PRESSURE_SENSOR pressureSensor;
+	PRESSURE_SENSORSPI pressureSensorspi;
 
 	float pressureDeadZone;
 	float pressureMaxP;
@@ -59,6 +61,8 @@ public:
 	float inflateVelocity;
 	float pressure;
 	float pressureFil;
+	float pressuredot;
+	float filterBeta;
 	float pressureCommand;
 	int inflatingFlag;
 
@@ -72,6 +76,7 @@ public:
 	float positionTable[13];
 	float pressure2position(float);
 	float position2pressure(float);
+	void setValveOpeningLimit(float ominN,float omaxN,float ominP,float omaxP);
 private:
 	float length;
 	float lengthCommand;

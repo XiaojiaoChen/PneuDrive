@@ -63,6 +63,7 @@ void setup()
 
 }
 void loop(){
+	float aa=getFlowrate();
 	if (loop_gogogo) {
 		//maintain the upstream to be within [110KPa, 130KPa], and downstream pressure to be within[-40KPa, -30KPa].
 		ptPneudrive->pSource.maintainPressure(pSourceLimit,pSourceLimit+20000);

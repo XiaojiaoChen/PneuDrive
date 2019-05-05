@@ -27,11 +27,10 @@ typedef struct
 /*serial bin format:
  * Hex: 0x5a  0x5a 0xa5  0xa5 data 	0x0D 	0x0A
  * Dec: 90    90   165   165  data  13 		10
- * char: Z    Z    ¥ 	  ¥   data  \r  	\n
+ * char: Z    Z     	    data  \r  	\n
  */
 
 static PRINTFBINSTRUCT printfBinStruct;
-
 
 
 /*This file enables to use printf() to output strings to a uart:
@@ -348,5 +347,5 @@ void Usart_TerminalHandler()
 
 	}
 
-
 }
+

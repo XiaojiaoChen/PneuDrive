@@ -27,7 +27,8 @@ CPP_SRCS += \
 ../Src/framework/frameSrc/PneuDrive.cpp \
 ../Src/framework/frameSrc/PneuDriveLL.cpp \
 ../Src/framework/frameSrc/SOLENOIDVALVE.cpp \
-../Src/framework/frameSrc/joyStick.cpp 
+../Src/framework/frameSrc/joyStick.cpp \
+../Src/framework/frameSrc/pressureSensorSPI.cpp 
 
 OBJS += \
 ./Src/framework/frameSrc/ADBoard.o \
@@ -50,6 +51,7 @@ OBJS += \
 ./Src/framework/frameSrc/myPID.o \
 ./Src/framework/frameSrc/myUsartFunction.o \
 ./Src/framework/frameSrc/pressureRegulator_ITV2030.o \
+./Src/framework/frameSrc/pressureSensorSPI.o \
 ./Src/framework/frameSrc/trajectoryGeneration.o \
 ./Src/framework/frameSrc/valveFlowFunc.o 
 
@@ -77,7 +79,8 @@ CPP_DEPS += \
 ./Src/framework/frameSrc/PneuDrive.d \
 ./Src/framework/frameSrc/PneuDriveLL.d \
 ./Src/framework/frameSrc/SOLENOIDVALVE.d \
-./Src/framework/frameSrc/joyStick.d 
+./Src/framework/frameSrc/joyStick.d \
+./Src/framework/frameSrc/pressureSensorSPI.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

@@ -12,10 +12,6 @@
 #include <SOLENOIDVALVE.h>
 
 
-
-const float SOLENOID_VALVE::frequencyMin = 0.5;
-const float SOLENOID_VALVE::frequencyMax = 2000;
-
 SOLENOID_VALVE::SOLENOID_VALVE(int num){
 
 	_duty=0;
@@ -59,7 +55,6 @@ float SOLENOID_VALVE::readFrequency()
 
 void SOLENOID_VALVE::writeFrequency(float fre)
 {
-	fre = CONSTRAIN(fre,frequencyMin,frequencyMax);
 	if(fabsf(fre-frequency)>1e-6)
 	{
 		frequency = fre;

@@ -46,14 +46,14 @@ static uint32_t PWM_CriticalARR[PWM_CRITICAL_FRE_NUM];
 static uint32_t PWM_CriticalPSC[PWM_CRITICAL_FRE_NUM];
 static float 	PWM_CRITICAL_FRE[BUILTIN_PWM_NUM][PWM_CRITICAL_FRE_NUM];
 
-static uint32_t duty2CCR(uint16_t num,float fduty){
-	uint32_t ccr=(round)(((uint32_t)(PWM_TIMs_Array[num]->Instance->ARR)+1)*fduty);
+static uint32_t duty2CCR(uint32_t arr,float fduty){
+	uint32_t ccr=(round)((uint32_t)(arr+1)*fduty);
 	return CONSTRAIN(ccr,0,65535);
 }
 
-static float CCR2duty(uint16_t num,uint32_t ccr){
+static float CCR2duty(uint32_t arr,uint32_t ccr){
 	float fccr=ccr;
-	return (fccr/(uint32_t)(PWM_TIMs_Array[num]->Instance->ARR+1));
+	return (fccr/(uint32_t)(arr+1));
 }
 
 static uint32_t getTIM_SOURCECLK(TIM_HandleTypeDef *htim)
@@ -67,7 +67,7 @@ static uint32_t getTIM_SOURCECLK(TIM_HandleTypeDef *htim)
 
 void PWMBuiltIn_writeDuty(uint16_t num, float fduty){
 	//uduty~[0,ARR+1],uduty=0 means constant low; uduty=ARR+1 means constant high;
-	__HAL_TIM_SET_COMPARE(PWM_TIMs_Array[num], PWM_CHANNELs_Array[num], duty2CCR(num,fduty));
+	__HAL_TIM_SET_COMPARE(PWM_TIMs_Array[num], PWM_CHANNELs_Array[num], duty2CCR((uint32_t)PWM_TIMs_Array[num]->Instance->ARR,fduty));
 
 }
 void PWMBuiltIn_writeFrequency(uint16_t num, float fre) {
@@ -94,9 +94,7 @@ void PWMBuiltIn_writeFrequency(uint16_t num, float fre) {
 		//alter all the channels' CCR under the same TIM because they share a common ARR.
 		for(int j=0;j<BUILTIN_PWM_NUM;j++){
 			if(PWM_TIMs_Array[j]==PWM_TIMs_Array[num]){
-				uint32_t curCCR= (round)(ARRtem*PWMBuiltIn_readDuty(j));
-				curCCR= CONSTRAIN(curCCR,0,65535);
-				__HAL_TIM_SET_COMPARE(PWM_TIMs_Array[j], PWM_CHANNELs_Array[j],curCCR);
+				__HAL_TIM_SET_COMPARE(PWM_TIMs_Array[j], PWM_CHANNELs_Array[j],duty2CCR(ARRtem,PWMBuiltIn_readDuty(j)));
 				__HAL_TIM_SET_COUNTER(PWM_TIMs_Array[j],0);
 			}
 		}
@@ -105,13 +103,8 @@ void PWMBuiltIn_writeFrequency(uint16_t num, float fre) {
 	}
 }
 
-
-
-
-
 float PWMBuiltIn_readDuty(uint16_t num){
-	uint32_t ccrCur=__HAL_TIM_GET_COMPARE(PWM_TIMs_Array[num], PWM_CHANNELs_Array[num]);
-	return CCR2duty(num,ccrCur);
+	return CCR2duty((uint32_t)PWM_TIMs_Array[num]->Instance->ARR,(uint32_t)(__HAL_TIM_GET_COMPARE(PWM_TIMs_Array[num], PWM_CHANNELs_Array[num])));
 }
 
 float PWMBuiltIn_readFrequency(uint16_t num){

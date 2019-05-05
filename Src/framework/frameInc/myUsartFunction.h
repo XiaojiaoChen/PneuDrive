@@ -28,10 +28,8 @@ typedef struct {
 }__attribute__((packed)) RECEIVEBINSTRUCT;
 
 
+
 typedef struct UART_DEVICE_STRUCT{
-
-
-
 	uint8_t TxBuf[UART_TX_BUF_NUM][UART_TX_BUF_SIZE];  /*TxBuffer*/
 	uint16_t consumerTxBufNum;
 	uint16_t producerTxBufNum;

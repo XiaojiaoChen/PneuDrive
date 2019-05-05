@@ -70,13 +70,14 @@ positionTable{0,10,20,30,40,50,60,70,80,90,100,110,120}
 
 	length=0.3;
 	lengthCommand = length;
-
+	filterBeta=0.01;
 	pressure=0;
 	pressureFil=0;
+	pressuredot=0;
 	pressureCommand=pressure;
-	pressureDeadZone = 2000;
-	pressureMaxP=20000;
-	pressureMinN=-20000;
+	pressureDeadZone = 3000;
+	pressureMaxP=30000;
+	pressureMinN=-30000;
 
 	fulOpening=1;
 	opening = 0;
@@ -90,6 +91,7 @@ positionTable{0,10,20,30,40,50,60,70,80,90,100,110,120}
 	inflateVelocity=1;
 
 	pressureController = NewPressureController(200000,0,CONTROLLDT,1e10,40000,2e-5,0,0,6e-5,0.3);
+	//pressureController = NewPressureController(200000,0,CONTROLLDT,8e11,6000,2e-5,0,0,6e-5,0.3);
 	curOpeningNum=0;
 	endOpeningNum=0;
 	inOpeningSequence = 0;
@@ -118,6 +120,7 @@ void CHAMBER::attachSensor(int AnalogPort)
 
 float CHAMBER::readPressure(){
 	pressure = pressureSensor.read();
+	//pressure = pressureSensorspi.read();
 	pressureFil = stepKF(pressureController->pKalmanFilter,pressure);
 	return pressure;
 }
@@ -132,6 +135,7 @@ void CHAMBER::writePressure(float pNom)
 	if(pErr>pressureDeadZone)
 	{
 		opening=MAPCONSTRAIN(pErr,pressureDeadZone,pressureMaxP*inflateVelocity,openingMinP,openingMaxP);
+		//opening=1;
 	}
 	else if(pErr<-pressureDeadZone)
 	{
@@ -139,6 +143,7 @@ void CHAMBER::writePressure(float pNom)
 		//opening=pressureController->controlPressure(pressureController,pressureFil,pressureCommand);
 
 		opening=MAPCONSTRAIN(pErr,pressureMinN*inflateVelocity,-pressureDeadZone,openingMinN,openingMaxN);
+		//opening=-1;
 	}
 	else
 	{
@@ -153,58 +158,40 @@ void CHAMBER::writePressure(float pNom,float pNomDot)
 
 	pressureCommand = CONSTRAIN(pNom,-100000,180000);
 	readPressure();
+
+	pressuredot=pressuredot + filterBeta * (pressureController->pKalmanFilter->X.pData[1]-pressuredot);
 	float pErr = pressureCommand-pressureFil;
-	float pErrDot=pNomDot;
-	if(pErrDot>0)
-	{
-		inflatingFlag=1;
-		if(pErr>pressureDeadZone)
-		{
-			opening=MAPCONSTRAIN(pErr,pressureDeadZone,pressureMaxP*inflateVelocity,openingMinP,openingMaxP);
-		}
-		else if(pErr<-pressureDeadZone*10)
-		{
-			opening=MAPCONSTRAIN(pErr,-pressureMinN*inflateVelocity,-pressureDeadZone,openingMinN,openingMaxN);
-		}
-		else{
-			//opening=pressureController->controlPressure(pressureController,pressureFil,pressureCommand);
-			opening=MAPCONSTRAIN(pErr,pressureMinN*inflateVelocity,pressureDeadZone,0,openingMinP);
-		}
-	}
-	else
-	{
-		inflatingFlag=0;
-		if(pErr<-pressureDeadZone)
-		{
-			opening=MAPCONSTRAIN(pErr,-pressureMaxP*inflateVelocity,-pressureDeadZone,openingMinN,openingMaxN);
-		}
-		else if(pErr>pressureDeadZone*100)
-		{
-			//opening=mapconstrain(pErr,pressureDeadZone,pressureMaxP*inflateVelocity,openingMinP,openingMaxP);
-		}
-		else
-		{
-			//opening=pressureController->controlPressure(pressureController,pressureFil,pressureCommand);
-			opening=MAPCONSTRAIN(pErr,-pressureDeadZone,0,openingMaxN,0);
-		}
-	}
+	float pErrDot=pNomDot;//-pressureController->pKalmanFilter->X.pData[1];
 
+	if(pErr< pressureDeadZone && pErr>-pressureDeadZone)
+	{
+		opening=0;
+	}
+	else{
+		opening=pressureController->controlPressure(pressureController,pErr,pErrDot);
 
+		if(opening<0)
+			opening+=openingMaxN;
+		else if(opening>0)
+			opening+=openingMinP;
+	}
 
 	writeOpening(opening);
 }
 
 void CHAMBER::writeOpeningSequence()
 {
-
-	opening=openingSequence[curOpeningNum++];
-	if(curOpeningNum>=endOpeningNum)
+	if(inOpeningSequence)
 	{
-		inOpeningSequence = 0;
-		curOpeningNum = 0;
-		opening=0;
+		opening=openingSequence[curOpeningNum++];
+		if(curOpeningNum>=endOpeningNum)
+		{
+			inOpeningSequence = 0;
+			curOpeningNum = 0;
+			opening=0;
+		}
+		writeOpening(opening);
 	}
-	writeOpening(opening);
 }
 
 
@@ -241,7 +228,13 @@ void CHAMBER::setSensorRange_GaugePa(float vmin,float vmax,float pmin,float pmax
 	pressureSensor.setSensorRange_GaugePa(vmin,vmax,pmin,pmax);
 }
 
-
+void CHAMBER::setValveOpeningLimit(float ominN,float omaxN,float ominP,float omaxP)
+{
+	openingMinN = ominN;
+	openingMaxN = omaxN;
+	openingMinP = ominP;
+	openingMaxP = omaxP;
+}
 float CHAMBER::pressure2position(float pre){
 	return myInterpolate(13,pressureTable,positionTable,pre);
 }
