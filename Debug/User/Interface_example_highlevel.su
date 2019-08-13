@@ -1,0 +1,6 @@
+Interface_example_highlevel.cpp:39:6:void setup()	8	static
+Interface_example_highlevel.cpp:60:6:void loop()	8	static
+Interface_example_highlevel.cpp:97:6:void serialDisplay()	16	static
+Interface_example_highlevel.cpp:111:6:void serialReceiveCallback(char*)	24	static
+Interface_example_highlevel.cpp:142:1:void __static_initialization_and_destruction_0(int, int)	16	static
+Interface_example_highlevel.cpp:142:1:cpp)	8	static

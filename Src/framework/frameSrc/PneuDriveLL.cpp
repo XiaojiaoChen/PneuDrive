@@ -110,7 +110,7 @@ void PWMWriteFrequency(uint16_t num, float fre)
  * @param  None
  * @retval None
  */
-__weak void setup() {
+__weak  void setup() {
 	printf("Running default setup()\r\n");
 };
 
@@ -122,7 +122,7 @@ __weak void setup() {
  * @param  None
  * @retval None
  */
-__weak void loop() {
+__weak  void loop() {
 	printf("Running default loop()\r\n");
 }
 ;
@@ -137,7 +137,7 @@ __weak void loop() {
  * @param  None
  * @retval None
  */
-__weak void serialDisplay() {
+__weak  void serialDisplay() {
 	printf("Running default serialDisplay()\r\n");
 }
 ;
@@ -149,7 +149,7 @@ __weak void serialDisplay() {
   * @param  pSerialReceiveBuffer : Pointer to the received string ended with '\r\n'.
   * @retval None
   */
-__weak void serialReceiveCallback(char *pSerialReceiveBuffer) {
+__weak  void serialReceiveCallback(char *pSerialReceiveBuffer) {
 	printf("Running default serialCommandCallback()\r\n");
 }
 ;
@@ -160,7 +160,7 @@ __weak void serialReceiveCallback(char *pSerialReceiveBuffer) {
   * @param  interrupt_Pin : the number of port where interrupt took place
   * @retval None
   */
-__weak void interruptCallback(int Button_Interrupt_Pin)
+__weak  void interruptCallback(int Button_Interrupt_Pin)
 {
 };
 
@@ -169,7 +169,7 @@ __weak void serialPort1Callback(char *pWirelessReceiveBuffer) {
 }
 ;
 
-__weak void serialPort4Callback(char *pSerialPort4Buffer)
+__weak  void serialPort4Callback(char *pSerialPort4Buffer)
 {
 
 };

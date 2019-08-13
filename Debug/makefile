@@ -8,8 +8,8 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include startup/subdir.mk
 -include User/subdir.mk
+-include Startup/subdir.mk
 -include Src/framework/frameSrc/subdir.mk
 -include Src/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/subdir.mk
@@ -42,9 +42,6 @@ endif
 ifneq ($(strip $(CXX_DEPS)),)
 -include $(CXX_DEPS)
 endif
-ifneq ($(strip $(S_UPPER_DEPS)),)
--include $(S_UPPER_DEPS)
-endif
 ifneq ($(strip $(C_DEPS)),)
 -include $(C_DEPS)
 endif
@@ -56,31 +53,43 @@ endif
 -include ../makefile.defs
 
 # Add inputs and outputs from these tool invocations to the build variables 
+EXECUTABLES += \
+PneuDrive.elf \
+
+SIZE_OUTPUT += \
+default.size.stdout \
+
+OBJDUMP_LIST += \
+PneuDrive.list \
+
 
 # All Target
-all: PneuDrive.elf
+all: PneuDrive.elf secondary-outputs
 
 # Tool invocations
-PneuDrive.elf: $(OBJS) $(USER_OBJS)
-	@echo 'Building target: $@'
-	@echo 'Invoking: MCU G++ Linker'
-	arm-none-eabi-g++ -mcpu=cortex-m7 -mthumb -mfloat-abi=hard -mfpu=fpv5-d16 -specs=nosys.specs -specs=nano.specs -u _printf_float -u _scanf_float -T"../STM32F767ZITx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -fno-exceptions -fno-rtti -o "PneuDrive.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
+PneuDrive.elf: $(OBJS) $(USER_OBJS) C:\Users\40207\OneDrive\OneDriveDocumentation\STM32CubeIDEWorkSpaceOnedrive\PneuDrive\STM32F767ZITX_FLASH.ld
+	arm-none-eabi-g++ -o "PneuDrive.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\40207\OneDrive\OneDriveDocumentation\STM32CubeIDEWorkSpaceOnedrive\PneuDrive\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PneuDrive.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
-	$(MAKE) --no-print-directory post-build
+
+default.size.stdout: $(EXECUTABLES)
+	arm-none-eabi-size  $(EXECUTABLES)
+	@echo 'Finished building: $@'
+	@echo ' '
+
+PneuDrive.list: $(EXECUTABLES)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "PneuDrive.list"
+	@echo 'Finished building: $@'
+	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) *
 	-@echo ' '
 
-post-build:
-	-@echo 'Generating hex and Printing size information:'
-	arm-none-eabi-objcopy -O ihex "PneuDrive.elf" "PneuDrive.hex"
-	arm-none-eabi-size "PneuDrive.elf"
-	-@echo ' '
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
 
 .PHONY: all clean dependents
-.SECONDARY: post-build
+.SECONDARY:
 
 -include ../makefile.targets

@@ -4,19 +4,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 S_SRCS += \
-../startup/startup_stm32f767xx.s 
+../Startup/startup_stm32f767zitx.s 
 
 OBJS += \
-./startup/startup_stm32f767xx.o 
+./Startup/startup_stm32f767zitx.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-startup/%.o: ../startup/%.s
-	@echo 'Building file: $<'
-	@echo 'Invoking: MCU GCC Assembler'
-	@echo $(PWD)
-	arm-none-eabi-as -mcpu=cortex-m7 -mthumb -mfloat-abi=hard -mfpu=fpv5-d16 -g -o "$@" "$<"
-	@echo 'Finished building: $<'
-	@echo ' '
-
+Startup/%.o: ../Startup/%.s
+	arm-none-eabi-gcc -mcpu=cortex-m7 -g3 -DCIFX_TOOLKIT_HWIF -DARM_MATH_CM7 '-D__FPU_PRESENT=1U' -c -x assembler-with-cpp --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
 

@@ -52,10 +52,10 @@
 
 /* USER CODE END Variables */
 osThreadId sendTaskHandle;
-uint32_t sendTaskBuffer[ 2048 ];
+uint32_t sendTaskBuffer[ 4096 ];
 osStaticThreadDef_t sendTaskControlBlock;
 osThreadId controlTaskHandle;
-uint32_t controlTaskBuffer[ 2048 ];
+uint32_t controlTaskBuffer[ 4096 ];
 osStaticThreadDef_t controlTaskControlBlock;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -112,11 +112,11 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of sendTask */
-  osThreadStaticDef(sendTask, sendTaskFunc, osPriorityBelowNormal, 0, 2048, sendTaskBuffer, &sendTaskControlBlock);
+  osThreadStaticDef(sendTask, sendTaskFunc, osPriorityBelowNormal, 0, 4096, sendTaskBuffer, &sendTaskControlBlock);
   sendTaskHandle = osThreadCreate(osThread(sendTask), NULL);
 
   /* definition and creation of controlTask */
-  osThreadStaticDef(controlTask, controlTaskFunc, osPriorityAboveNormal, 0, 2048, controlTaskBuffer, &controlTaskControlBlock);
+  osThreadStaticDef(controlTask, controlTaskFunc, osPriorityAboveNormal, 0, 4096, controlTaskBuffer, &controlTaskControlBlock);
   controlTaskHandle = osThreadCreate(osThread(controlTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -134,6 +134,9 @@ void MX_FREERTOS_Init(void) {
 /* USER CODE END Header_sendTaskFunc */
 void sendTaskFunc(void const * argument)
 {
+    
+    
+    
 
   /* USER CODE BEGIN sendTaskFunc */
 	TickType_t xLastWakeTime=xTaskGetTickCount();;
@@ -141,10 +144,8 @@ void sendTaskFunc(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  /*************100us*********************/
 	  serialDisplay();
 	  vTaskDelayUntil(&xLastWakeTime,sendTaskPeriod);
-
   }
   /* USER CODE END sendTaskFunc */
 }
@@ -160,27 +161,26 @@ void controlTaskFunc(void const * argument)
 {
   /* USER CODE BEGIN controlTaskFunc */
 	TickType_t xLastWakeTime=xTaskGetTickCount();
-	TickType_t controlTaskPeriod=pdMS_TO_TICKS((int)(1000.0/CONTROL_FREQUENCY));
-
+		TickType_t controlTaskPeriod=pdMS_TO_TICKS((int)(1000.0/CONTROL_FREQUENCY));
   /* Infinite loop */
-  for(;;)
-  {
-		AnaBuiltInStart();
-#if (ADBOARD_NUM>0)
-		ADBoard_updateVoltage();
-#endif
-		//terminal command process
-		Usart_TerminalHandler();
+	 for(;;)
+	  {
+			AnaBuiltInStart();
+	#if (ADBOARD_NUM>0)
+			ADBoard_updateVoltage();
+	#endif
+			//terminal command process
+			Usart_TerminalHandler();
 
-		//User loop function
-		loop();
+			//User loop function
+			loop();
 
-#if (PWMBOARDSPI_NUM>0)
-		PWMBoardSPI_flushDutyAll();
-#endif
-		vTaskDelayUntil(&xLastWakeTime,controlTaskPeriod);
+	#if (PWMBOARDSPI_NUM>0)
+			PWMBoardSPI_flushDutyAll();
+	#endif
+			vTaskDelayUntil(&xLastWakeTime,controlTaskPeriod);
 
-  }
+	  }
   /* USER CODE END controlTaskFunc */
 }
 

@@ -1,0 +1,5 @@
+valveFlowFunc.c:26:14:voltage2Area	16	static
+valveFlowFunc.c:34:14:area2Voltage	16	static
+valveFlowFunc.c:41:7:voltage2flowrate	48	static
+valveFlowFunc.c:72:7:flowrate2Voltage	56	static
+valveFlowFunc.c:96:7:getFlowrate	16	static

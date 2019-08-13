@@ -10,10 +10,11 @@
 
 #ifndef FRAMEWORK_FRAMEINC_BUILTINHWCONFIG_H_
 #define FRAMEWORK_FRAMEINC_BUILTINHWCONFIG_H_
+
 #ifdef __cplusplus
  extern "C" {
 #endif
-#include "UserConfig.h"
+#include <PneuDriveConfig.h>
 
 /*********************************************************************************************************
 *******************Do not modify the following contents, unless you are aware what you are doing*********

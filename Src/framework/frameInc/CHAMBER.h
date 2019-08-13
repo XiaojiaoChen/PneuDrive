@@ -30,6 +30,7 @@ public:
 	void attachSensor(int AnalogPort);
 
 	float readPressure();
+	float filterPressure();
 	void writePressure(float pressureCommand);
 	void writePressure(float pNom,float pNomDot);
 
@@ -66,7 +67,7 @@ public:
 	float pressureCommand;
 	int inflatingFlag;
 
-	float openingSequence[100];
+	float openingSequence[1000];
 	int fulOpening;
 	int endOpeningNum;
 	int curOpeningNum;

@@ -25,6 +25,7 @@ typedef struct AD7616_DEVICE_STRUCT {
 	uint16_t BUSY_Pin;
 	uint16_t chosen;
 	uint8_t ucDataFlag;
+
 } AD7616_DEVICE;
 
 
@@ -35,6 +36,9 @@ typedef struct AD_DEVICES_STRUCT{
 
 	uint16_t curADBoardNum;
 	uint16_t ucDataFlag;
+	int32_t ADTime;
+	int32_t ADTimeStart;
+	int32_t ADTimeEnd;
 
 }AD_BOARDS;
 

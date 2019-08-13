@@ -1,0 +1,15 @@
+PWMBoardSPI.c:42:13:PWM_CS_LOW	4	static
+PWMBoardSPI.c:47:13:PWM_CS_HIGH	4	static
+PWMBoardSPI.c:52:13:PWMBoardSPI_Callback	8	static
+PWMBoardSPI.c:60:13:PWMBoardSPI_sendFrame	16	static
+PWMBoardSPI.c:66:13:PWMBoardSPI_bufferCMD	24	static
+PWMBoardSPI.c:72:13:PWMBoardSPI_bufferDutyChannel	40	static
+PWMBoardSPI.c:106:13:PWMBoardSPI_bufferCorrection	32	static
+PWMBoardSPI.c:131:13:PWMBoardSPI_setOutputEnable	16	static
+PWMBoardSPI.c:138:13:PWMBoardSPI_setCorrectionEnable	16	static
+PWMBoardSPI.c:147:13:PWMBoardSPI_startPWMCK	16	static
+PWMBoardSPI.c:155:6:PWMBoardSPI_writeFrequency	24	static
+PWMBoardSPI.c:167:6:PWMBoardSPI_writeDuty	16	static
+PWMBoardSPI.c:171:6:PWMBoardSPI_writeCorrectionAll	24	static
+PWMBoardSPI.c:180:6:PWMBoardSPI_flushDutyAll	16	static
+PWMBoardSPI.c:191:6:PWMBoardSPI_init	16	static

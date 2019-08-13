@@ -53,6 +53,9 @@ typedef struct PWMBOARDSPI_STRUCT{
 	float frequency;
 	float clkFrequency;
 	uint32_t lastUpdateTime;
+	int32_t PWMTimeStart;
+	int32_t PWMTimeEnd;
+	int32_t PWMTime;
 
 }PWM_BOARDSPI;
 
@@ -60,10 +63,8 @@ extern PWM_BOARDSPI PWMBoardSPIDevices;
 void PWMBoardSPI_writeFrequency(float freq);
 void PWMBoardSPI_writeDuty(uint16_t num, float fduty);
 void PWMBoardSPI_writeCorrectionAll(uint8_t value);
+void PWMBoardSPI_flushDutyAll();
 void PWMBoardSPI_init();
-
-void PWMBoardSPI_updateDutyAll();
-void PWMBoardSPI_updateCorrectionAll();
 #endif
 
 #ifdef __cplusplus

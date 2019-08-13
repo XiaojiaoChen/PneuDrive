@@ -1,0 +1,12 @@
+builtInPWM.c:49:17:duty2CCR	24	static
+builtInPWM.c:54:14:CCR2duty	24	static
+builtInPWM.c:59:17:getTIM_SOURCECLK	16	static
+builtInPWM.c:68:6:PWMBuiltIn_writeDuty	24	static
+builtInPWM.c:73:6:PWMBuiltIn_writeFrequency	40	static
+builtInPWM.c:106:7:PWMBuiltIn_readDuty	16	static
+builtInPWM.c:110:7:PWMBuiltIn_readFrequency	24	static
+builtInPWM.c:116:6:PWMBuiltInStartChannel	16	static
+builtInPWM.c:121:6:PWMBuiltInStopChannel	16	static
+builtInPWM.c:126:6:PWMBuiltInStart	16	static
+builtInPWM.c:131:6:PWMBuiltInStop	16	static
+builtInPWM.c:137:6:PWMBuiltIn_init	24	static

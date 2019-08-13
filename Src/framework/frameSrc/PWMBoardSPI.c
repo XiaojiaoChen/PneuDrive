@@ -32,7 +32,6 @@ static void PWM_CS_HIGH();
 static void PWMBoardSPI_Callback();
 static void PWMBoardSPI_sendFrame();
 static void PWMBoardSPI_bufferCMD(uint8_t cmd);
-static void PWMBoardSPI_bufferCMD(uint8_t cmd);
 static void PWMBoardSPI_bufferDutyChannel(uint16_t num, float fduty);
 static void PWMBoardSPI_bufferCorrection(uint16_t num,uint8_t value);
 static void PWMBoardSPI_setOutputEnable(uint8_t flag);
@@ -202,6 +201,9 @@ void PWMBoardSPI_init()
 	ptPWMBoardSPI->dirtyCOR=0;
 	ptPWMBoardSPI->dirtyDuty=0;
 	ptPWMBoardSPI->lastUpdateTime=0;
+	ptPWMBoardSPI->PWMTime=0;
+	ptPWMBoardSPI->PWMTimeEnd=0;
+	ptPWMBoardSPI->PWMTimeStart=0;
 
 	PWMBuiltInStopChannel(ptPWMBoardSPI->Frequency_PWMPortNum);
 

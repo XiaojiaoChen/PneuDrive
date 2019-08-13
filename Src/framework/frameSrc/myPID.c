@@ -62,7 +62,7 @@ void initPID(PID_Type *pid,float kp,float ki,float kd,float dt,float ilim,float 
 	 pid->Ki=ki;
 	 pid->Kd=kd;
 
-	 pid->Kpr=0.9;
+	 pid->Kpr=1;
 	 pid->Kdr=0.0f;
 
 	 pid->Dt=dt;

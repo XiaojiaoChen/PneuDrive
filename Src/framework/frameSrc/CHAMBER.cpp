@@ -18,13 +18,13 @@ const float CHAMBER::pressureMin= 0;
 const float CHAMBER::pressureMax=201325;
 
 static float valveOpeningLimArray[30][4]={
-		{-0.275,-0.26,0.18,0.23},//0
-		{-0.235,-0.18,0.1,0.12},//1
-		{-0.45,-0.29,0.1,0.12},//2
-		{-0.425,-0.292,0.118,0.132},//3
-		{-0.379,-0.262,0.1,0.12},//4
+		{-1,-0.95,0.95,1},//0
+		{-1,-0.95,0.95,1},//1
+		{-1,-0.95,0.95,1},//2
+		{-1,-0.95,0.95,1},//3
+		{-1,-0.95,0.95,1},//4
 
-		{-0.245,-0.135,0.104,0.12},//5
+		{-1,-0.95,0.95,1},//5
 		{-0.163,-0.135,0.1,0.12},//6
 		{-0.45,-0.26,0.099,0.12},//7
 		{-0.245,-0.135,0.099,0.12},//8
@@ -75,7 +75,7 @@ positionTable{0,10,20,30,40,50,60,70,80,90,100,110,120}
 	pressureFil=0;
 	pressuredot=0;
 	pressureCommand=pressure;
-	pressureDeadZone = 3000;
+	pressureDeadZone = 2000;
 	pressureMaxP=30000;
 	pressureMinN=-30000;
 
@@ -91,7 +91,7 @@ positionTable{0,10,20,30,40,50,60,70,80,90,100,110,120}
 	inflateVelocity=1;
 
 	pressureController = NewPressureController(200000,0,CONTROLLDT,1e10,40000,2e-5,0,0,6e-5,0.3);
-	//pressureController = NewPressureController(200000,0,CONTROLLDT,8e11,6000,2e-5,0,0,6e-5,0.3);
+	//pressureController = NewPressureController(200000,0,CONTROLLDT,1e13,1000,2e-5,0,0,6e-5,0.3);
 	curOpeningNum=0;
 	endOpeningNum=0;
 	inOpeningSequence = 0;
@@ -121,8 +121,12 @@ void CHAMBER::attachSensor(int AnalogPort)
 float CHAMBER::readPressure(){
 	pressure = pressureSensor.read();
 	//pressure = pressureSensorspi.read();
-	pressureFil = stepKF(pressureController->pKalmanFilter,pressure);
 	return pressure;
+}
+
+float CHAMBER::filterPressure(){
+	pressureFil = stepKF(pressureController->pKalmanFilter,pressure);
+	return pressureFil;
 }
 
 
@@ -130,8 +134,8 @@ void CHAMBER::writePressure(float pNom)
 {
 
 	pressureCommand = CONSTRAIN(pNom,-100000,180000);
-	readPressure();
-	float pErr = pressureCommand-pressureFil;
+
+	float pErr = pressureCommand-pressure;
 	if(pErr>pressureDeadZone)
 	{
 		opening=MAPCONSTRAIN(pErr,pressureDeadZone,pressureMaxP*inflateVelocity,openingMinP,openingMaxP);
@@ -157,10 +161,7 @@ void CHAMBER::writePressure(float pNom,float pNomDot)
 {
 
 	pressureCommand = CONSTRAIN(pNom,-100000,180000);
-	readPressure();
-
-	pressuredot=pressuredot + filterBeta * (pressureController->pKalmanFilter->X.pData[1]-pressuredot);
-	float pErr = pressureCommand-pressureFil;
+	float pErr = pressureCommand-pressure;
 	float pErrDot=pNomDot;//-pressureController->pKalmanFilter->X.pData[1];
 
 	if(pErr< pressureDeadZone && pErr>-pressureDeadZone)
