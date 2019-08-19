@@ -109,7 +109,7 @@ void MX_GPIO_Init(void)
                            PGPin PGPin PGPin PGPin */
   GPIO_InitStruct.Pin = E0_Pin|E1_Pin|E2_Pin|E3_Pin 
                           |E4_Pin|E5_Pin|E6_Pin|E7_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
 
@@ -123,7 +123,7 @@ void MX_GPIO_Init(void)
   /*Configure GPIO pins : PDPin PDPin PDPin */
   GPIO_InitStruct.Pin = SPI4_CS_Pin|SPI6_CS_Pin|SPI3_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 

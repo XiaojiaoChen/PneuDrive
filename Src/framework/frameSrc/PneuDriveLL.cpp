@@ -15,6 +15,8 @@
 #include "PWMBoardI2C.h"
 #include "tim.h"
 extern TIM_HandleTypeDef htim5;
+int32_t globalPeriodControlLoop=1;
+int32_t globalPeriodSendLoop=1;
 
 float AnalogRead(uint16_t num)
 {
@@ -206,4 +208,12 @@ void delay_ns(int32_t t)  ////20MHz 50ns
 
 }
 
+void setPeriodControlLoop(int32_t clMS)
+{
+	globalPeriodControlLoop=clMS;
+}
 
+void setPeriodSendLoop(int32_t slMS)
+{
+	globalPeriodSendLoop=slMS;
+}

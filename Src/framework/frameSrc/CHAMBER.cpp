@@ -90,7 +90,7 @@ positionTable{0,10,20,30,40,50,60,70,80,90,100,110,120}
 	openingMaxP = valveOpeningLimArray[PWMPort1/2][3];
 	inflateVelocity=1;
 
-	pressureController = NewPressureController(200000,0,CONTROLLDT,1e10,40000,2e-5,0,0,6e-5,0.3);
+	pressureController = NewPressureController(200000,0,DEFAULTCONTROLLDT,1e10,40000,2e-5,0,0,6e-5,0.3);
 	//pressureController = NewPressureController(200000,0,CONTROLLDT,1e13,1000,2e-5,0,0,6e-5,0.3);
 	curOpeningNum=0;
 	endOpeningNum=0;
