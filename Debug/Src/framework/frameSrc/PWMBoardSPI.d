@@ -37,16 +37,7 @@ Src/framework/frameSrc/PWMBoardSPI.o: \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
  C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/builtInHWConfig.h \
  C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/PneuDriveConfig.h \
- ../Inc/main.h \
- C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/PneuDriveLL.h \
- C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Drivers/CMSIS/DSP/Include/arm_math.h \
- C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/myUsartFunction.h \
- C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/myPID.h \
- C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/kalman.h \
- C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/Controller.h \
- C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/valveFlowFunc.h \
- C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/builtInPWM.h \
- ../Inc/spi.h ../Inc/main.h
+ ../Inc/main.h
 
 C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/PWMBoardSPI.h:
 
@@ -121,25 +112,5 @@ C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/Pneu
 C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/builtInHWConfig.h:
 
 C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/PneuDriveConfig.h:
-
-../Inc/main.h:
-
-C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/PneuDriveLL.h:
-
-C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Drivers/CMSIS/DSP/Include/arm_math.h:
-
-C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/myUsartFunction.h:
-
-C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/myPID.h:
-
-C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/kalman.h:
-
-C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/Controller.h:
-
-C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/valveFlowFunc.h:
-
-C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/builtInPWM.h:
-
-../Inc/spi.h:
 
 ../Inc/main.h:

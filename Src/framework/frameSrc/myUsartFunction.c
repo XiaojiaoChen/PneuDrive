@@ -199,7 +199,7 @@ int _write(int file, char *pSrc, int len)
 	}
 	else{
 	//TO DO, There is a bug here, when the builtInPWMFrequency is changed, the Usart3Devices would somehow suddenly lost the configurations
-		Usart3Device.bufferedTxNum=1;
+		Usart3Device.bufferedTxNum=Usart3Device.bufferedTxNum;
 	}
 	//move producerTxBufNum forward
 	Usart3Device.producerTxBufNum++;

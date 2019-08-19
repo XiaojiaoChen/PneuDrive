@@ -27,6 +27,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
 #include "PneuDriveLL.h"
+
 #include "builtInAnalog.h"
 #include "PWMBoardSPI.h"
 #include "ADBoard.h"
@@ -139,12 +140,18 @@ void sendTaskFunc(void const * argument)
     
 
   /* USER CODE BEGIN sendTaskFunc */
-	TickType_t xLastWakeTime=xTaskGetTickCount();;
-	TickType_t sendTaskPeriod=pdMS_TO_TICKS((int)(1000.0/DISPLAY_FREQUENCY));
+	TickType_t xLastWakeTime=xTaskGetTickCount();
+	TickType_t sendTaskPeriod=pdMS_TO_TICKS(1);
+	static int32_t sendTick=0;
+	extern int32_t globalPeriodSendLoop;
   /* Infinite loop */
   for(;;)
   {
-	  serialDisplay();
+	  if(++sendTick>=globalPeriodSendLoop)
+	  {
+		  sendTick=0;
+		  serialDisplay();
+	  }
 	  vTaskDelayUntil(&xLastWakeTime,sendTaskPeriod);
   }
   /* USER CODE END sendTaskFunc */
@@ -161,11 +168,14 @@ void controlTaskFunc(void const * argument)
 {
   /* USER CODE BEGIN controlTaskFunc */
 	TickType_t xLastWakeTime=xTaskGetTickCount();
-		TickType_t controlTaskPeriod=pdMS_TO_TICKS((int)(1000.0/CONTROL_FREQUENCY));
+	TickType_t controlTaskPeriod=pdMS_TO_TICKS(1);
+	static int32_t loopTick=0;
+	extern int32_t globalPeriodControlLoop;
   /* Infinite loop */
 	 for(;;)
 	  {
-			AnaBuiltInStart();
+
+		//	AnaBuiltInStart();
 	#if (ADBOARD_NUM>0)
 			ADBoard_updateVoltage();
 	#endif
@@ -173,7 +183,11 @@ void controlTaskFunc(void const * argument)
 			Usart_TerminalHandler();
 
 			//User loop function
-			loop();
+	 if(++loopTick>=globalPeriodControlLoop)
+	 {
+		loopTick=0;
+		loop();
+	 }
 
 	#if (PWMBOARDSPI_NUM>0)
 			PWMBoardSPI_flushDutyAll();

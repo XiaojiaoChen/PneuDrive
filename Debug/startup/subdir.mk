@@ -12,5 +12,5 @@ OBJS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 Startup/%.o: ../Startup/%.s
-	arm-none-eabi-gcc -mcpu=cortex-m7 -g3 -DCIFX_TOOLKIT_HWIF -DARM_MATH_CM7 '-D__FPU_PRESENT=1U' -c -x assembler-with-cpp --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m7 -g3 -c -I../ -x assembler-with-cpp --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
 

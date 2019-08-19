@@ -41,6 +41,9 @@ uint32_t micros();
 void delay_us(int32_t t);
 void delay_ns(int32_t t);
 
+/**************************Change the period of control loop and send loop**********/
+void setPeriodControlLoop(int32_t clMS);
+void setPeriodSendLoop(int32_t slMS);
 
 /**************************Other interface functions to use**************************/
 void serialPort1Callback(char *pSerialPort1Buffer);

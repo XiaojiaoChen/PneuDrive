@@ -56,7 +56,9 @@ User/Interface_example_highlevel.o: \
  C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/joyStick.h \
  C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/ADBoard.h \
  C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/PWMBoardSPI.h \
- C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/myPID.h
+ C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/myPID.h \
+ ../Inc/spi.h ../Inc/main.h \
+ C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/trajectoryGeneration.h
 
 C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/PneuDrive.h:
 
@@ -173,3 +175,9 @@ C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/Pneu
 C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/PWMBoardSPI.h:
 
 C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/myPID.h:
+
+../Inc/spi.h:
+
+../Inc/main.h:
+
+C:/Users/40207/OneDrive/OneDriveDocumentation/STM32CubeIDEWorkSpaceOnedrive/PneuDrive/Src/framework/frameInc/trajectoryGeneration.h:
