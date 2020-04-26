@@ -1,0 +1,32 @@
+cmath:87:3:constexpr float std::acos(float)	16	static
+cmath:144:3:constexpr float std::atan2(float, float)	16	static
+cmath:241:3:constexpr float std::fabs(float)	16	static
+cmath:1771:3:constexpr float std::round(float)	16	static
+SoftArmSegment.cpp:34:1:SOFT_ARM_SEGMENT::SOFT_ARM_SEGMENT(int)	32	static
+SoftArmSegment.cpp:125:6:void SOFT_ARM_SEGMENT::setup()	24	static
+SoftArmSegment.cpp:148:6:void SOFT_ARM_SEGMENT::loop()	24	static
+SoftArmSegment.cpp:203:6:void SOFT_ARM_SEGMENT::display()	200	static
+SoftArmSegment.cpp:253:6:void SOFT_ARM_SEGMENT::receiveCommand(char*)	640	static
+SoftArmSegment.cpp:538:6:void SOFT_ARM_SEGMENT::lowPassABLCommand()	16	static
+SoftArmSegment.cpp:546:6:void SOFT_ARM_SEGMENT::increaseFrequency(float)	24	static
+SoftArmSegment.cpp:554:6:void SOFT_ARM_SEGMENT::increaseVelocity(float)	16	static
+SoftArmSegment.cpp:559:7:float SOFT_ARM_SEGMENT::readPressure(int)	16	static
+SoftArmSegment.cpp:565:6:void SOFT_ARM_SEGMENT::readPressureAll()	24	static
+SoftArmSegment.cpp:572:6:void SOFT_ARM_SEGMENT::writeOpeningAll(float)	24	static
+SoftArmSegment.cpp:579:6:void SOFT_ARM_SEGMENT::controlPressureAll()	24	static
+SoftArmSegment.cpp:593:6:void SOFT_ARM_SEGMENT::writePressure(int, float)	24	static
+SoftArmSegment.cpp:600:6:void SOFT_ARM_SEGMENT::joyStickController(int)	64	static
+SoftArmSegment.cpp:734:6:void SOFT_ARM_SEGMENT::joyStickControllerTwoSegment()	16	static
+SoftArmSegment.cpp:808:6:void SOFT_ARM_SEGMENT::switchValveStatus()	32	static
+SoftArmSegment.cpp:832:7:float SOFT_ARM_SEGMENT::readLength()	24	static
+SoftArmSegment.cpp:838:6:void SOFT_ARM_SEGMENT::readIMU(char*)	24	static
+SoftArmSegment.cpp:856:6:void SOFT_ARM_SEGMENT::ABLD2PD()	40	static
+SoftArmSegment.cpp:873:6:void SOFT_ARM_SEGMENT::ABL2P()	40	static
+SoftArmSegment.cpp:888:6:void SOFT_ARM_SEGMENT::PD2ABLD()	24	static
+SoftArmSegment.cpp:903:6:void SOFT_ARM_SEGMENT::P2ABL()	24	static
+SoftArmSegment.cpp:916:14:float SOFT_ARM_SEGMENT::getPhycD()	16	static
+SoftArmSegment.cpp:922:14:float SOFT_ARM_SEGMENT::getPhysD()	16	static
+SoftArmSegment.cpp:928:14:float SOFT_ARM_SEGMENT::getPhyc()	16	static
+SoftArmSegment.cpp:933:14:float SOFT_ARM_SEGMENT::getPhys()	16	static
+SoftArmSegment.cpp:938:13:void SOFT_ARM_SEGMENT::quatern2AB()	32	static
+SoftArmSegment.cpp:951:6:void SOFT_ARM_SEGMENT::receiveABLCommand(char*)	24	static

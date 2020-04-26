@@ -1,0 +1,9 @@
+Interface_example_softArmSegment.cpp:17:6:void setup()	8	static
+Interface_example_softArmSegment.cpp:23:6:void loop()	8	static
+Interface_example_softArmSegment.cpp:29:6:void serialDisplay()	8	static
+Interface_example_softArmSegment.cpp:34:6:void serialReceiveCallback(char*)	16	static
+Interface_example_softArmSegment.cpp:39:6:void serialPort1Callback(char*)	16	static
+Interface_example_softArmSegment.cpp:44:6:void clickButtonCallback(int)	16	static
+Interface_example_softArmSegment.cpp:48:6:void serialPort4Callback(char*)	16	static
+Interface_example_softArmSegment.cpp:51:1:void __static_initialization_and_destruction_0(int, int)	16	static
+Interface_example_softArmSegment.cpp:51:1:cpp)	8	static

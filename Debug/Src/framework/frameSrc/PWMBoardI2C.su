@@ -1,0 +1,10 @@
+PWMBoardI2C.c:23:16:PCA9685_readReg	32	static
+PWMBoardI2C.c:35:13:PCA9685_writeReg	32	static
+PWMBoardI2C.c:44:13:PCA9685_calculateDuty	32	static
+PWMBoardI2C.c:66:13:PCA9685_writeFrequency	32	static
+PWMBoardI2C.c:89:13:PCA9685_writeDuty	40	static
+PWMBoardI2C.c:99:6:PWMBoardI2C_writeFrequency	16	static
+PWMBoardI2C.c:103:6:PWMBoardI2C_writeDuty	16	static
+PWMBoardI2C.c:109:6:PWMBoardI2C_writeDutyAll	40	static
+PWMBoardI2C.c:125:6:PWMBoardI2C_reset	16	static
+PWMBoardI2C.c:130:6:PWMBoardI2C_init	16	static

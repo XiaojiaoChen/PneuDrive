@@ -257,6 +257,44 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	if (ret)
 		interruptCallback(GPIO_Pin);
 }
+
+void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *hi2c){
+	uint32_t SDA_PIN = GPIO_PIN_0;
+	uint32_t SCL_PIN = GPIO_PIN_1;
+	GPIO_TypeDef *SDA_PORT=GPIOF;
+	GPIO_TypeDef *SCL_PORT=GPIOF;
+	GPIO_InitTypeDef GPIO_InitStructure;
+	hi2c->Instance->CR1 &= ~I2C_CR1_PE;
+	GPIO_InitStructure.Mode         = GPIO_MODE_OUTPUT_OD;
+	GPIO_InitStructure.Pull         = GPIO_PULLUP;
+	GPIO_InitStructure.Speed        = GPIO_SPEED_FREQ_HIGH;
+	GPIO_InitStructure.Pin          = SCL_PIN;
+	HAL_GPIO_Init(SCL_PORT, &GPIO_InitStructure);
+	HAL_GPIO_WritePin(SCL_PORT, SCL_PIN, GPIO_PIN_SET);
+	GPIO_InitStructure.Pin          = SDA_PIN;
+	HAL_GPIO_Init(SDA_PORT, &GPIO_InitStructure);
+	HAL_GPIO_WritePin(SDA_PORT, SDA_PIN, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(SDA_PORT, SDA_PIN, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(SCL_PORT, SCL_PIN, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(SCL_PORT, SCL_PIN, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(SDA_PORT, SDA_PIN, GPIO_PIN_SET);
+
+
+	GPIO_InitStructure.Mode = GPIO_MODE_AF_OD;
+	GPIO_InitStructure.Pull = GPIO_PULLUP;
+	GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+	GPIO_InitStructure.Alternate = GPIO_AF4_I2C2;
+	GPIO_InitStructure.Pin          = SCL_PIN;
+	HAL_GPIO_Init(SCL_PORT, &GPIO_InitStructure);
+	GPIO_InitStructure.Pin          = SDA_PIN;
+	HAL_GPIO_Init(SDA_PORT, &GPIO_InitStructure);
+//	hi2c->Instance->CR1 |= I2C_CR1_SWRST;
+//	asm("nop");
+//	hi2c->Instance->CR1 &= ~I2C_CR1_SWRST;
+//	asm("nop");
+	hi2c->Instance->CR1 |= I2C_CR1_PE;
+	HAL_I2C_Init(hi2c);
+}
 /* USER CODE END 4 */
 
 /**

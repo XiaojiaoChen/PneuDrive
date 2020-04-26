@@ -206,11 +206,11 @@ int _write(int file, char *pSrc, int len)
 	Usart3Device.producerTxBufNum%=UART_TX_BUF_NUM;
 
 	//Buffered term full, wait for consumer to reduce producerTxBufNum
-	while(Usart3Device.bufferedTxNum > (UART_TX_BUF_NUM-2)){
-		//Danger! May block the main program continuously !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//This waiting mechanism is to take care of the high frequency output within a short period during the Ethercat Initialization
-		//If the producer is always quicker than consumer, for example a high frequency output ,this function would block the program permanently
-	};
+//	while(Usart3Device.bufferedTxNum > (UART_TX_BUF_NUM-2)){
+//		//Danger! May block the main program continuously !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//		//This waiting mechanism is to take care of the high frequency output within a short period during the Ethercat Initialization
+//		//If the producer is always quicker than consumer, for example a high frequency output ,this function would block the program permanently
+//	};
 	return len;
 }
 

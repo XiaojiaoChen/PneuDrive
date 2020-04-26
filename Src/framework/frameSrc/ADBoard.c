@@ -86,6 +86,7 @@ int ADBoard_SPICallback(SPI_HandleTypeDef *hspi)
 					if(ptADBoardDevices->curADBoardNum + 1 <ADBOARD_NUM)
 					{
 						ptADBoardDevices->curADBoardNum +=1;
+
 						AD7616_getVoltage(&(ptADBoardDevices->ADBoards[ptADBoardDevices->curADBoardNum]));
 					}
 					else
@@ -150,22 +151,22 @@ void ADBoard_Init()
 	ptADBoardDevices->ADBoards[0].CS_Pin = SPI3_CS_Pin;
 	ptADBoardDevices->ADBoards[0].BUSY_Port = E7_GPIO_Port;
 	ptADBoardDevices->ADBoards[0].BUSY_Pin = E7_Pin;
-	//memcpy(&(ptADBoardDevices->ADBoards[1]),&(ptADBoardDevices->ADBoards[0]),sizeof(AD7616_DEVICE));
+	memcpy(&(ptADBoardDevices->ADBoards[1]),&(ptADBoardDevices->ADBoards[0]),sizeof(AD7616_DEVICE));
 
-//
-//	ptADBoardDevices->ADBoards[1].fMinVoltage = -5;
-//	ptADBoardDevices->ADBoards[1].fMaxVoltage = 5;
-//	ptADBoardDevices->ADBoards[1].fRange = 10;
-//	ptADBoardDevices->ADBoards[1].AD_spi = &hspi1;
-//	ptADBoardDevices->ADBoards[1].CONV_Port = DO_17_GPIO_Port;
-//	ptADBoardDevices->ADBoards[1].CONV_Pin = DO_17_Pin;
-//	ptADBoardDevices->ADBoards[1].CS_Port = SPI1_CS_GPIO_Port;
-//	ptADBoardDevices->ADBoards[1].CS_Pin = SPI1_CS_Pin;
-//	ptADBoardDevices->ADBoards[1].BUSY_Port = E6_GPIO_Port;
-//	ptADBoardDevices->ADBoards[1].BUSY_Pin = E6_Pin;
-//	ptADBoardDevices->ADBoards[1].chosen = 0;
-//	ptADBoardDevices->ADBoards[1].ucDataFlag = 0;
-//
+
+	ptADBoardDevices->ADBoards[1].fMinVoltage = -5;
+	ptADBoardDevices->ADBoards[1].fMaxVoltage = 5;
+	ptADBoardDevices->ADBoards[1].fRange = 10;
+	ptADBoardDevices->ADBoards[1].AD_spi = &hspi1;
+	ptADBoardDevices->ADBoards[1].CONV_Port = DO_17_GPIO_Port;
+	ptADBoardDevices->ADBoards[1].CONV_Pin = DO_17_Pin;
+	ptADBoardDevices->ADBoards[1].CS_Port = SPI1_CS_GPIO_Port;
+	ptADBoardDevices->ADBoards[1].CS_Pin = SPI1_CS_Pin;
+	ptADBoardDevices->ADBoards[1].BUSY_Port = E6_GPIO_Port;
+	ptADBoardDevices->ADBoards[1].BUSY_Pin = E6_Pin;
+	ptADBoardDevices->ADBoards[1].chosen = 0;
+	ptADBoardDevices->ADBoards[1].ucDataFlag = 0;
+
 
 
 
