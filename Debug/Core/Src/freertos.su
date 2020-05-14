@@ -1,0 +1,4 @@
+freertos.c:79:6:vApplicationGetIdleTaskMemory	24	static
+freertos.c:93:6:MX_FREERTOS_Init	72	static
+freertos.c:136:6:sendTaskFunc	24	static
+freertos.c:163:6:controlTaskFunc	24	static

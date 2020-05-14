@@ -1,0 +1,6 @@
+SoftArmSegment.cpp:17:1:SOFT_ARM_SEGMENT::SOFT_ARM_SEGMENT(int)	32	static
+SoftArmSegment.cpp:28:7:float SOFT_ARM_SEGMENT::readPressure(int)	16	static
+SoftArmSegment.cpp:34:6:void SOFT_ARM_SEGMENT::readPressureAll()	24	static
+SoftArmSegment.cpp:41:6:void SOFT_ARM_SEGMENT::writeOpeningAll(float)	24	static
+SoftArmSegment.cpp:48:6:void SOFT_ARM_SEGMENT::controlPressureAll()	24	static
+SoftArmSegment.cpp:55:6:void SOFT_ARM_SEGMENT::setPressureCommand(int, float)	24	static

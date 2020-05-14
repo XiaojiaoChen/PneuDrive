@@ -1,0 +1,3 @@
+builtInAnalog.c:17:6:AnaBuiltInStart	8	static
+builtInAnalog.c:22:6:AnaBuiltInStop	8	static
+builtInAnalog.c:35:7:AnalogRead_BuiltIn	16	static

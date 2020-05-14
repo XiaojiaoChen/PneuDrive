@@ -23,9 +23,11 @@ C_UPPER_DEPS :=
 CXX_DEPS := 
 C_DEPS := 
 CPP_DEPS := 
+OBJCOPY_BIN := 
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Core/Src \
 Drivers/CMSIS/DSP/Source/BasicMathFunctions \
 Drivers/CMSIS/DSP/Source/CommonTables \
 Drivers/CMSIS/DSP/Source/ComplexMathFunctions \
@@ -40,8 +42,6 @@ Drivers/STM32F7xx_HAL_Driver/Src \
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS \
 Middlewares/Third_Party/FreeRTOS/Source \
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 \
-Src \
-Src/framework/frameSrc \
-Startup \
 User \
+pneuDriveFramework/PneuDriveSrc \
 

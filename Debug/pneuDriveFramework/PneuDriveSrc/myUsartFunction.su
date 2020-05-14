@@ -1,0 +1,14 @@
+myUsartFunction.c:59:6:usart1CommandHandler	8	static
+myUsartFunction.c:64:6:usart3CommandHandler	16	static
+myUsartFunction.c:94:6:usart2CommandHandler	8	static
+myUsartFunction.c:99:6:UartCommandHandler	16	static
+myUsartFunction.c:109:6:my_UsartInit	8	static
+myUsartFunction.c:158:6:HAL_UART_RxIdleCallback	24	static
+myUsartFunction.c:183:5:_write	32	static
+myUsartFunction.c:219:6:printfBinFlush	16	static
+myUsartFunction.c:230:6:printfBinPush	16	static
+myUsartFunction.c:234:6:HAL_UART_RxCpltCallback	16	static
+myUsartFunction.c:240:6:HAL_UART_TxCpltCallback	24	static
+myUsartFunction.c:263:6:myUsart1IRQ	8	static
+myUsartFunction.c:291:6:UsartDMAIdleHandler	16	static
+myUsartFunction.c:335:6:Usart_TerminalHandler	8	static

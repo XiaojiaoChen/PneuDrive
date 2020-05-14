@@ -1,0 +1,3 @@
+messages.c:19:6:packQuaternion	24	static
+messages.c:51:6:unpackQuaternion	40	static
+messages.c:90:21:fastSqrt32	24	static

@@ -1,0 +1,3 @@
+pressureRegulator_ITV2030.c:12:6:setPressure	16	static
+pressureRegulator_ITV2030.c:25:7:getPressure	16	static
+pressureRegulator_ITV2030.c:31:6:setZeroRegulator	16	static

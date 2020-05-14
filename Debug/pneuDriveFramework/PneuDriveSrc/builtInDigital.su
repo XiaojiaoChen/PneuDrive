@@ -1,0 +1,3 @@
+builtInDigital.c:28:6:DigitalBuiltIn_Write	24	static
+builtInDigital.c:36:5:DigitalBuiltIn_Read	24	static
+builtInDigital.c:47:6:DigitalBuiltIn_Toggle	16	static

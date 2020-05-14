@@ -1,0 +1,6 @@
+myMain.cpp:17:6:void setup()	8	static
+myMain.cpp:35:6:void loop()	8	static
+myMain.cpp:49:6:void serialDisplay()	88	static
+myMain.cpp:72:6:void serialReceiveCallback(char*)	16	static
+myMain.cpp:82:1:void __static_initialization_and_destruction_0(int, int)	16	static
+myMain.cpp:82:1:cpp)	8	static

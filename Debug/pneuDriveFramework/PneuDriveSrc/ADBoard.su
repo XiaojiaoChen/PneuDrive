@@ -1,0 +1,13 @@
+ADBoard.c:20:13:AD_CS_LOW	16	static
+ADBoard.c:25:13:AD_CS_HIGH	16	static
+ADBoard.c:29:13:AD_CONV_LOW	16	static
+ADBoard.c:34:13:AD_CONV_HIGH	16	static
+ADBoard.c:39:13:AD_RESET_LOW	16	static
+ADBoard.c:44:13:AD_RESET_HIGH	16	static
+ADBoard.c:50:13:AD7616_getVoltage	16	static
+ADBoard.c:65:5:ADBoard_BUSYCallback	32	static
+ADBoard.c:83:5:ADBoard_SPICallback	32	static
+ADBoard.c:118:6:ADBoard_Reset	16	static
+ADBoard.c:137:6:ADBoard_updateVoltage	8	static
+ADBoard.c:145:7:AnalogRead_External	24	static
+ADBoard.c:156:6:ADBoard_Init	16	static
